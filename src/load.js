@@ -4,19 +4,19 @@ if (typeof mapbox === 'undefined') mapbox = {};
 // a tilejson url (or an array of many) and an optional callback
 // that takes one argument, the map.
 mapbox.auto = function(elem, url, callback) {
-    mapbox.load(url, function(opts) {
+    mapbox.load(url, function(err, opts) {
 
         if (!(opts instanceof Array)) opts = [opts];
 
         var tileLayers = [],
             markerLayers = [];
         for (var i = 0; i < opts.length; i++) {
-            if (opts[i].layer) tileLayers.push(opts[i].layer);
-            if (opts[i].markers) markerLayers.push(opts[i].markers);
+            if (opts[i] && opts[i].layer) tileLayers.push(opts[i].layer);
+            if (opts[i] && opts[i].markers) markerLayers.push(opts[i].markers);
         }
 
         var map = mapbox.map(elem, tileLayers.concat(markerLayers)).auto();
-        if (callback) callback(map, opts);
+        if (callback) callback(err, map, opts);
     });
 };
 
@@ -36,7 +36,9 @@ mapbox.load = function(url, callback) {
         url = 'http://a.tiles.mapbox.com/v3/' + url + '.jsonp';
     }
 
-    wax.tilejson(url, function(tj) {
+    wax.tilejson(url, function(err, tj) {
+        if (err) return callback(err, tj);
+
         // Pull zoom level out of center
         tj.zoom = tj.center[2];
 
@@ -54,12 +56,13 @@ mapbox.load = function(url, callback) {
         // Instantiate markers layer
         if (tj.data) {
             tj.markers = mmg().factory(mapbox.markers.simplestyle_factory);
-            tj.markers.url(tj.data, function() {
+            tj.markers.url(tj.data, function(err) {
+                if (err) return callback(err);
                 mmg_interaction(tj.markers);
-                callback(tj);
+                callback(err, tj);
             });
         } else {
-            callback(tj);
+            callback(err, tj);
         }
     });
 };
