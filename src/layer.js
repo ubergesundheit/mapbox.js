@@ -92,9 +92,9 @@ mapbox.layer.prototype.refresh = function(callback) {
     var that = this;
     // When the async request for a TileJSON blob comes back,
     // this resets its own tilejson and calls setProvider on itself.
-    wax.tilejson(this._url, function(o) {
+    wax.tilejson(this._url, function(err, o) {
         that.tilejson(o);
-        if (callback) callback(this);
+        if (callback) callback(err, this);
     });
     return this;
 };
