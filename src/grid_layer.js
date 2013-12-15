@@ -6,8 +6,8 @@ var util = require('./util'),
     grid = require('./grid');
 
 // forked from danzel/L.UTFGrid
-var GridLayer = L.Class.extend({
-    includes: [L.Mixin.Events, require('./load_tilejson')],
+var GridLayer = L.Layer.extend({
+    includes: [require('./load_tilejson')],
 
     options: {
         template: function() { return ''; }
@@ -45,11 +45,6 @@ var GridLayer = L.Class.extend({
 
     active: function() {
         return !!(this._map && this.options.grids && this.options.grids.length);
-    },
-
-    addTo: function (map) {
-        map.addLayer(this);
-        return this;
     },
 
     onAdd: function(map) {

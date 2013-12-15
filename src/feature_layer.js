@@ -87,7 +87,7 @@ var FeatureLayer = L.FeatureGroup.extend({
             }
         } else if (this.options.filter(json)) {
 
-            var layer = L.GeoJSON.geometryToLayer(json, marker.style),
+            var layer = L.GeoJSON.geometryToLayer(json, {pointToLayer: marker.style}),
                 popupHtml = marker.createPopup(json, this.options.sanitizer);
 
             if ('setStyle' in layer) {
