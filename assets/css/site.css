@@ -7,17 +7,8 @@
 /* Base Candidate */
 .note pre { background:#fff; }
 
-.space-bottom1      { margin-bottom:10px; }
 .space-bottom4,
 .depth-3, .depth-2  { margin-bottom:40px; }
-
-/* Otherwise the controls are hidden
- * on the landing page when animating the
- * different map examples in. */
-.sliding .pin-bottom,
-.sliding .leaflet-control {
-  -webkit-transform:translate3d(0,0,0);
-  }
 
 .version,
 .version:hover {
@@ -26,6 +17,15 @@
   .version > *{
     padding:2px 5px;
     }
+
+.wireframe .dot {
+  display:inline-block;
+  width:10px;
+  height:10px;
+  }
+
+.example.dark pre { background:rgba(0,0,0,0.7); }
+.example.dark pre strong { color:#fff; }
 
 /* Scrollbar */
 .scrollbar {
@@ -91,6 +91,23 @@ nav a:first-child {
     position:absolute;
     bottom:20px; right:20px;
     z-index:1;
+    }
+
+/* Frontpage */
+.examples a p {
+  color:rgba(0,0,0,0.75);
+  }
+.examples a:hover,
+.toggle-options a.active,
+.toggle-options a:hover {
+  background:#f8f8f8;
+  }
+.toggle-options a .icon:before {
+  visibility:hidden;
+  }
+  .toggle-options a.active .icon:before,
+  .toggle-options a:hover .icon:before {
+    visibility:visible;
     }
 
 pre a {
