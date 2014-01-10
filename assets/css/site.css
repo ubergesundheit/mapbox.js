@@ -34,7 +34,7 @@
 .output pre strong { color:#fff; }
 
 /* Scrollbar */
-.scrollbar pre {
+.scrollbar * {
   overflow:auto;
   white-space:pre;
   word-wrap:normal;
