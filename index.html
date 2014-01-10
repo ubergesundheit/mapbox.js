@@ -20,19 +20,19 @@ var map = L.mapbox.map('map', '<strong>examples.map-9ijuk24y</strong>', {
   <div class='limiter row12'>
     <div class='col5 margin1r'>
     <div class='space-bottom2 prose'>
-      <p>With just a few lines of code, build your map with customizable controls like search and share.</p>
+      <p>With just a few lines of code, build a map with customizable controls like search and share.</p>
     </div>
 
-      <div class='dark example space-bottom2'>
-  <pre>{{example}}</pre>
-      </div>
+<div class='dark'>
+<pre id='output' class='output space-bottom2 block'>{{example}}</pre>
+</div>
 
       <nav class='keyline-all toggle-options round space-bottom2 col12'>
         <a href='#' data-option='zoom' class='col12 keyline-bottom quiet space pad1 active'>
           <span class='icon check dot fill-green'></span>
           Zoom Controls
         </a>
-        <a href='#' data-option='disable-scroll' class='col12 keyline-bottom quiet space pad1 active'>
+        <a href='#' data-option='noscroll' class='col12 keyline-bottom quiet space pad1 active'>
           <span class='icon check dot fill-green'></span>
           Disable mouse scrolling
         </a>
@@ -65,83 +65,6 @@ var map = L.mapbox.map('map', '<strong>examples.map-9ijuk24y</strong>', {
     </div>
   </div>
 </div>
-
-<script>
-var mapid = 'examples.map-9ijuk24y';
-
-function updateCode(data) {
-  console.log(data);
-}
-
-function removeControl(prop) {
-  if (map[prop]) {
-      map.removeControl(map[prop]);
-      delete map[prop];
-  }
-}
-
-function load() {
-  var map = L.mapbox.map('map-example', mapid, {
-      scrollWheelZoom: false
-  });
-
-  var options = ['zoom'];
-  var unique = (App && App.user && App.currentmap) ? App.currentmap : mapid;
-
-  // Replace username.mapid with the current one.
-  $('pre').each(function() {
-    $(this).html($(this).html().replace(mapid, unique));
-  });
-
-  $('.toggle-options a').click(function() {
-    var option = $(this).data('option');
-
-    if ($(this).is('.active')) {
-      $(this).removeClass('active');
-      $(this).find('.icon')
-        .removeClass('fill-green')
-        .addClass('fill-darken0');
-
-      switch (option) {
-        case 'zoom':
-        break;
-        case 'search':
-        break;
-        case 'share':
-
-        console.log(map);
-          _(options).without('share');
-        break;
-        case 'markers':
-        break;
-      }
-    } else {
-      $(this).addClass('active');
-      $(this).find('.icon')
-        .removeClass('fill-darken0')
-        .addClass('fill-green');
-
-      switch (option) {
-        case 'zoom':
-        break;
-        case 'search':
-        break;
-        case 'share':
-          map.addControl(L.mapbox.shareControl());
-          options.push('share');
-        break;
-        case 'markers':
-        break;
-      }
-    }
-
-    updateCode(options);
-    return false;
-  });
-}
-
-$(load);
-</script>
 
 <div class='limiter clearfix'>
   <div class='col10 margin1'>
@@ -176,8 +99,8 @@ $(load);
           <h2 id='getting-started' class='space-bottom1'>Use it</h2>
           <div class='prose'>
             <p>MapBox.js is hosted on the same reliable and speedy CDN that powers MapBox tiles. There&#39;s no API key to use it. All that's needed is a reference to the script &amp; CSS in your HTML.</p>
-  {% highlight html %}<link href='//api.tiles.mapbox.com/mapbox.js/{{site.mapboxjs}}/mapbox.css' rel='stylesheet' />
-  <script src='//api.tiles.mapbox.com/mapbox.js/{{site.mapboxjs}}/mapbox.js'></script>{% endhighlight %}
+{% highlight html %}<link href='//api.tiles.mapbox.com/mapbox.js/{{site.mapboxjs}}/mapbox.css' rel='stylesheet' />
+<script src='//api.tiles.mapbox.com/mapbox.js/{{site.mapboxjs}}/mapbox.js'></script>{% endhighlight %}
             <a href='#standalone' id='trigger-standalone' class='small strong'>Need MapBox.js without Leaflet bundled?</a>
           </div>
         </div>
@@ -186,8 +109,8 @@ $(load);
           <h3 id='standalone' class='space-bottom1'>MapBox.js standalone</h3>
           <div class='prose'>
             <p>A standalone version of MapBox.js is also available without Leaflet included. Add the following in your HTML document:</p>
-  {% highlight html %}<link href='//api.tiles.mapbox.com/mapbox.js/{{site.mapboxjs}}/mapbox.standalone.css' rel='stylesheet' />
-  <script src='//api.tiles.mapbox.com/mapbox.js/{{site.mapboxjs}}/mapbox.standalone.js'></script>{% endhighlight %}
+{% highlight html %}<link href='//api.tiles.mapbox.com/mapbox.js/{{site.mapboxjs}}/mapbox.standalone.css' rel='stylesheet' />
+<script src='//api.tiles.mapbox.com/mapbox.js/{{site.mapboxjs}}/mapbox.standalone.js'></script>{% endhighlight %}
             <small>Note: <strong>Leaflet 0.7</strong> or greater is required.</small>
           </div>
         </div>
@@ -258,18 +181,10 @@ $(load);
   </div>
 </div>
 
-<script>
-$(function() {
-  if (window.location.hash === '#standalone') $('#standalone').removeClass('hidden');
-  $('#trigger-standalone').click(function() {
-    $('#standalone').removeClass('hidden');
-    return false;
-  });
-});
-</script>
-
 <div class='keyline-top'>
   <div class='limiter'>
     {% include developers-footer.html %}
   </div>
 </div>
+
+<script src='assets/js/overview.js'></script>
