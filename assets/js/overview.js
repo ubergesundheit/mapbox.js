@@ -84,12 +84,6 @@ function load() {
     return false;
   });
 
-  if (window.location.hash === '#standalone') $('#standalone').removeClass('hidden');
-  $('#trigger-standalone').click(function() {
-    $('#standalone').removeClass('hidden');
-    return false;
-  });
-  
   updateCode(options);
 }
 
