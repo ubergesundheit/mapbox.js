@@ -8,41 +8,30 @@ section: developers
 
 <div class='limiter'>
   {% include header.html %}
-  <div class='col12 clearfix'>
+  <div class='col12 clearfix space-bottom4'>
     <div class='col5'>
-      <div class='keyline-all'>
-        <div class='pad2'>
-          <h2 id='getting-started' class='space-bottom1'>Use it</h2>
-          <div class='prose'>
-            <p>MapBox.js is hosted on the same reliable and speedy CDN that powers MapBox tiles. There&#39;s no API key to use it. All that's needed is a reference to the script &amp; CSS in your HTML.</p>
-  {% highlight html %}<link href='//api.tiles.mapbox.com/mapbox.js/{{site.mapboxjs}}/mapbox.css' rel='stylesheet' />
-  <script src='//api.tiles.mapbox.com/mapbox.js/{{site.mapboxjs}}/mapbox.js'></script>{% endhighlight %}
-          </div>
-        </div>
+      <h2 id='getting-started' class='space-bottom1'>Grab the hosted source</h2>
+      <div class='prose'>
+        <p>MapBox.js is hosted on the same reliable and speedy CDN that powers MapBox tiles and there&#39;s no API key to use it.</p>
+<div class='dark output scrollbar'>
+<pre>&lt;link href='//api.tiles.mapbox.com/mapbox.js/{{site.mapboxjs}}/mapbox.css' rel='stylesheet' /&gt;
+&lt;script src='//api.tiles.mapbox.com/mapbox.js/{{site.mapboxjs}}/mapbox.js'&gt;&lt;/script&gt;</pre>
+</div>
       </div>
     </div>
 
     <div class='col6 margin1 examples prose'>
-      <a href='#' class='block row6 col4 pad2 center'>
+      <a href='#' class='block row6 col6 pad2 center'>
         <span class='center small-graphic dot fill-blue inline pad1 dark space-bottom2'>
           <span class='icon big data'></span>
         </span>
         <p><strong>Add data</strong> like <strong>GeoJSON</strong>, a simple format for adding interactive features to a map.</p>
-        <small>View example</small>
       </a>
-      <a href='#' class='col4 row6 pad2 keyline-left keyline-right center'>
+      <a href='#' class='col6 row6 pad2 keyline-left center'>
         <span class='center small-graphic dot fill-blue inline pad1 dark space-bottom2'>
           <span class='icon big tooltip'></span>
         </span>
         <p><strong>Tell stories</strong> Like a walk through locations told in a story.</p>
-        <small>View example</small>
-      </a>
-      <a href='#' class='block col4 row6 pad2 center'>
-        <span class='center small-graphic dot fill-blue inline pad1 dark space-bottom2'>
-          <span class='icon big graph'></span>
-        </span>
-        <p><strong>Create data visualizations</strong> like choropleths that illustrate population concentration.</p>
-        <small>View example</small>
       </a>
     </div>
   </div>
@@ -62,8 +51,8 @@ var map = L.mapbox.map('map', '<strong>examples.map-9ijuk24y</strong>', {
       <p>With just a few lines of code, build a map with customizable controls like search and share.</p>
     </div>
 
-<div class='dark'>
-<pre id='output' class='output space-bottom2 block'>{{example}}</pre>
+<div class='dark output'>
+<pre id='output' class='space-bottom2 block'>{{example}}</pre>
 </div>
 
       <nav class='keyline-all toggle-options round space-bottom2 col12'>
@@ -88,8 +77,6 @@ var map = L.mapbox.map('map', '<strong>examples.map-9ijuk24y</strong>', {
           Markers
         </a>
       </nav>
-
-      <p>Check out <a href='#features'>all features</a> or start <a href='#use'>using mapbox.js</a>.</p>
     </div>
 
     <div class='hide-mobile col6 pad4y pin-right'>
@@ -106,7 +93,7 @@ var map = L.mapbox.map('map', '<strong>examples.map-9ijuk24y</strong>', {
 </div>
 
 <div class='limiter clearfix'>
-  <div id='features col10 margin1'>
+  <div id='features' class='col10 margin1'>
     <div class='clearfix'>
       <div class='col6 pad2'>
         <div class='center'>
@@ -116,7 +103,7 @@ var map = L.mapbox.map('map', '<strong>examples.map-9ijuk24y</strong>', {
           <h3 id='mapbox-and-leaflet' class='space-bottom1'>Leaflet built-in</h3>
         </div>
         <div class='prose'>
-          <p>MapBox.js is built on top of <a href='http://leafletjs.com/'>Leaflet</a> &#8212; an open-source mapping library. <a href='http://leafletjs.com/reference.html'>Leaflet's API</a> handles much of the fundamental operations of using maps. MapBox.js documentation should be read in conjunction with the <a href='http://leafletjs.com/reference.html'>Leaflet API reference</a>.</p>
+          <p>MapBox.js is built on top of <a href='http://leafletjs.com/'>Leaflet</a> &#8212; an open-source mapping library. <a href='http://leafletjs.com/reference.html'>Leaflet's API</a> handles much of the fundamental operations of using maps.</p>
         </div>
       </div>
 

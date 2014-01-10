@@ -19,8 +19,8 @@
     }
 
 .wireframe {
-  border:2px solid rgba(0,0,0,0.5);
-  border-width:2px 0 2px 2px;
+  border:3px solid rgba(0,0,0,0.5);
+  border-right:none;
   }
   .wireframe .dot {
     display:inline-block;
@@ -28,25 +28,30 @@
     height:10px;
     }
 
-pre.output        { background:rgba(0,0,0,0.7); }
-pre.output strong { color:#fff; }
+.output pre        {
+  background:rgba(0,0,0,0.7);
+  }
+.output pre strong { color:#fff; }
 
 /* Scrollbar */
-.scrollbar {
-  overflow-y: auto;
+.scrollbar pre {
+  overflow:auto;
+  white-space:pre;
+  word-wrap:normal;
+  word-break:normal;
   }
-.scrollbar::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-  border-left: 1px solid rgba(0,0,0,.1);
-  background: transparent;
+.scrollbar *::-webkit-scrollbar {
+  width:8px;
+  height:8px;
+  border-left:1px solid rgba(0,0,0,.1);
+  background:transparent;
   }
-.scrollbar::-webkit-scrollbar-thumb {
-  background: rgba(0,0,0,.1);
-  border-radius: 0;
+.scrollbar *::-webkit-scrollbar-thumb {
+  background:rgba(0,0,0,.1);
+  border-radius:0;
   }
-.scrollbar::-webkit-scrollbar-track { background: none; }
-.scrollbar::-webkit-scrollbar:hover { background: rgba(0,0,0,.05); }
+.scrollbar *::-webkit-scrollbar-track { background:none; }
+.scrollbar *::-webkit-scrollbar:hover { background:rgba(0,0,0,.05); }
 nav a:first-of-type,
 nav a:first-child {
   border-top:none;
