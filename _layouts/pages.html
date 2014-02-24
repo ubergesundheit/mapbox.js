@@ -144,7 +144,7 @@ examples:
   </div>
 
   <div class='row1 contain col12'>
-    <nav class='site-nav fill-darken0 fl small strong col12 clearfix center'>
+    <nav id='search-results' class='site-nav fill-darken0 fl small strong col12 clearfix center'>
       <a href='{{site.baseurl}}/api' class='col4 pad1 truncate quiet {% if page.categories contains "api" %}active{% endif %}'>API</a>
       <a href='{{site.baseurl}}/examples' class='col4 pad1 truncate keyline-left quiet {% if page.url contains "example" %}active{% endif %}'>Examples</a>
       <a href='{{site.baseurl}}/plugins' class='col4 pad1 truncate keyline-left quiet {% if page.url contains "plugins" %}active{% endif %}'>Plugins</a>
@@ -170,7 +170,7 @@ examples:
       <div class='pad2 row2'>
         <fieldset class='with-icon'>
           <span class='icon search'></span>
-          <input id='filter-examples' type='text' class='round col12' placeholder='Filter examples'>
+          <input type='text' id='st-search-input' class='stretch round' placeholder='Filter examples' />
         </fieldset>
       </div>
 
@@ -210,6 +210,21 @@ examples:
 
 <!--Content area-->
 <div id='content-section' class='col9 pad4x margin3 content enclosure'>{{content}}</div>
+
+<script>
+var Swiftype = window.Swiftype || {};
+  (function() {
+    Swiftype.key = 'ByE7bq3YmMASdFvY7L4h';
+    Swiftype.renderStyle = 'inline';
+    Swiftype.resultContainingElement = '#search-results';
+
+    /** DO NOT EDIT BELOW THIS LINE **/
+    var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+    script.src = '//s.swiftypecdn.com/embed.js';
+    var entry = document.getElementsByTagName('script')[0];
+    entry.parentNode.insertBefore(script, entry);
+  }());
+</script>
 
 </body>
 </html>
