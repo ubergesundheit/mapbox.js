@@ -38,7 +38,7 @@ head: |
 
 <link href='{{site.baseurl}}/assets/css/site.css' rel='stylesheet' />
 <script src='{{site.baseurl}}/assets/js/prettify.js'></script>
-<script src='{{site.baseurl}}/assets/js/jquery.swiftype.autocomplete.js'></script>
+<script src='{{site.baseurl}}/assets/js/jquery.swiftype.autocomplete-dirty.js'></script>
 <script src='{{site.baseurl}}/assets/js/site.js'></script>
 
 {% capture api %}
@@ -48,7 +48,6 @@ head: |
 {% capture examples %}
 {% if page.v0 %}v0.6.7{% else %}v1.0.0{% endif %}
 {% endcapture %}
-
 
 <!--Mobile menu-->
 <div id='dropdown' class='show-mobile pad4 drop fill-green clearfix'>
@@ -125,12 +124,12 @@ head: |
 
   <div class='col12 clip full-y'>
     {% if page.categories contains 'api' %}
-    <div id='api-menu' class='col12 animate full-y'>
+    <div id='api-menu' class='section-menu contain col12 animate full-y'>
       <div class='pad2 row2'>
         <fieldset class='with-icon'>
           <a href='{{site.baseurl}}/api/{{page.version}}/all' class='pin-right pad1 pad2x round-right small view-all fill-white strong'>View all?</a>
           <span class='icon search'></span>
-          <input id='filter-api' type='text' class='round col12' placeholder='Filter documentation'>
+          <input id='filter-api' type='text' class='round col12' placeholder='Search API'>
         </fieldset>
       </div>
       {% include api.nav.html %}
@@ -138,15 +137,15 @@ head: |
     {% endif %}
 
     {% if page.url contains 'example' %}
-    <div id='examples-menu' class='col12 animate full-y'>
+    <div id='examples-menu' class='section-menu contain col12 animate full-y'>
       <div class='pad2 row2'>
         <fieldset class='with-icon'>
           <span class='icon search'></span>
-          <input type='text' id='swiftsearch' class='stretch round' placeholder='Filter examples' />
+          <input type='text' id='swiftsearch' class='stretch round' placeholder='Search examples' />
         </fieldset>
       </div>
 
-      <nav id='results' class='contain keyline-top pad1y navigation v fill-light full-y js-nav-examples quiet-scroll scroll-y col12 animate'>
+      <nav class='keyline-top pad1y navigation v fill-light full-y js-nav-examples quiet-scroll scroll-y col12 animate'>
         {% for example in page.examples %}
         <div class='section space-bottom1'>
           <strong class='col12 sub'>{{example.name}}</strong>
@@ -182,7 +181,6 @@ head: |
 
 <!--Content area-->
 <div id='content-section' class='col9 pad4x margin3 content enclosure'>{{content}}</div>
-
 <script id='template-result' type='text/html'>
   <a class='sub col12 truncate'>
     <% if (type) { %><small class='col12 quiet'><%= type %></small><% } %>
@@ -192,20 +190,9 @@ head: |
 
 <script>
 var resultTemplate = _($('#template-result').html()).template();
-  function render(documentType, item) {
-    return resultTemplate({
-          type: item['type'],
-          title: Swiftype.htmlEscape(item['title'])
-      });
-  }
-
-  function dropdownStyle($this) { return {}; }
-
   $('#swiftsearch').swiftype({
-    autocompleteContainingElement: $('#results'),
-    engineKey: 'ByE7bq3YmMASdFvY7L4h',
-    dropdownStylesFunction: dropdownStyle,
-    renderFunction: render
+    autocompleteContainingElement: $('.section-menu'),
+    // documentTypes: ['{{page.section}}'],
+    engineKey: 'ByE7bq3YmMASdFvY7L4h'
   });
-
 </script>

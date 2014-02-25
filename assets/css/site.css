@@ -56,8 +56,8 @@
     padding-bottom:170px;
     }
 
-.navigation .pad1y:empty { padding:0; }
-.navigation .sub         { padding:5px 20px; }
+.v .pad1y:empty { padding:0; }
+.v .sub { padding:5px 20px; }
 
 .navigation .active:hover:not(.quiet),
 .navigation .active:not(.quiet) {
@@ -251,12 +251,7 @@ pre .var { color:#0C9DC2; }
 .js-clipboard:hover { cursor:pointer; }
 
 /* Swiftype */
-.swiftype-widget .autocomplete {
-  background:#f8f8f8;
-  position:absolute;
-  top:0;
-  width:100%;
-  height:100%;
-  padding:10px 0;
+.swiftype-widget nav {
+  top:81px;
+  z-index:1;
   }
-.swiftype-widget a { cursor:pointer; }
