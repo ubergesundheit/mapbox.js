@@ -116,7 +116,7 @@ head: |
   </div>
 
   <div class='row1 contain col12'>
-    <nav id='search-results' class='site-nav fill-darken0 fl small strong col12 clearfix center'>
+    <nav class='site-nav fill-darken0 fl small strong col12 clearfix center'>
       <a href='{{site.baseurl}}/api' class='col4 pad1 truncate quiet {% if page.categories contains "api" %}active{% endif %}'>API</a>
       <a href='{{site.baseurl}}/examples' class='col4 pad1 truncate keyline-left quiet {% if page.url contains "example" %}active{% endif %}'>Examples</a>
       <a href='{{site.baseurl}}/plugins' class='col4 pad1 truncate keyline-left quiet {% if page.url contains "plugins" %}active{% endif %}'>Plugins</a>
@@ -146,7 +146,7 @@ head: |
         </fieldset>
       </div>
 
-      <nav class='keyline-top pad1y navigation v fill-light full-y js-nav-examples quiet-scroll scroll-y col12 animate'>
+      <nav id='results' class='keyline-top pad1y navigation v fill-light full-y js-nav-examples quiet-scroll scroll-y col12 animate'>
         {% for example in page.examples %}
         <div class='section space-bottom1'>
           <strong class='col12 sub'>{{example.name}}</strong>
@@ -190,10 +190,16 @@ var resultTemplate = _('<p class="title"><%= type %><br /><%= title %></p>').tem
           type: item['type'],
           title: Swiftype.htmlEscape(item['title'])
       });
-  };
+  }
+
+  function dropdownStyle($this) {
+    return {};
+  }
 
   $('#swiftsearch').swiftype({
+    autoCompleteContainingElement: $('#results'),
     engineKey: 'ByE7bq3YmMASdFvY7L4h',
+    dropdownStylesFunction: dropdownStyle,
     renderFunction: render
   });
 </script>
