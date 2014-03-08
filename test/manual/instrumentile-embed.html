@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='UTF-8'/>
+  <link rel="stylesheet" href="../../dist/mapbox.css"/>
+  <link rel="stylesheet" href="embed.css"/>
+  <script src="../../dist/mapbox.uncompressed.js"></script>
+</head>
+<body>
+<div id='map'></div>
+<script type='text/javascript'>
+
+
+var tilejson = {
+    "attribution": "<a href='https://www.mapbox.com/about/maps/' target='_blank'>&copy; Mapbox &copy; OpenStreetMap</a> <a class='mapbox-improve-map' href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a>",
+    "autoscale": true,
+    "center":[-98.976,39.386,4],
+    "bounds": [-180, -85.0511, 180, 85.0511],
+    "data": ["http://a.tiles.mapbox.com/v3/examples.map-9ijuk24y/markers.geojsonp"],
+    "geocoder": "http://a.tiles.mapbox.com/v3/examples.map-9ijuk24y/geocode/{query}.jsonp",
+    "id": "examples.map-9ijuk24y",
+    "maxzoom": 22,
+    "minzoom": 0,
+    "name": "My Mapbox Streets Map",
+    "private": true,
+    "scheme": "xyz",
+    "tilejson": "2.0.0",
+    "tiles": ["http://a.tiles.mapbox.com/v3/examples.map-9ijuk24y/{z}/{x}/{y}.png"],
+    "webpage": "http://a.tiles.mapbox.com/v3/examples.map-9ijuk24y/page.html",
+    "options": ["share","zoompan","zoomwheel","legend","tooltips","zoombox","attribution","geocoder","watermark"] 
+
+};
+    
+    var tj = tilejson,
+        options = (tj.options||[]).join(' '),
+        include = function(option, attrib) {
+            return options.indexOf(option) >= 0 && (!attrib || tj[attrib]);
+        };
+
+    // var center = tilejson.center;
+    // tilejson.center = null;
+
+    var map = L.mapbox.map('map', tilejson, {
+        tileLayer: {instrument: true},
+        minZoom: tilejson.minzoom,
+        maxZoom: tilejson.maxzoom,
+        attributionControl: true,
+        infoControl: false,
+        gridLayer: !!tilejson.grids,
+        gridControl: !!tilejson.grids,
+        infoControl: false,
+        scrollWheelZoom: include('zoomwheel'),
+        legendControl: include('legend'),
+        zoomControl: include('zoompan')
+    });
+
+    // map.setView([tilejson.center[1], center[0]], center[2], {
+    //             animate: false
+    //     });
+    
+    if (tilejson.data) map.addLayer(L.mapbox.markerLayer(tilejson.data));
+        if (include('geocoder', 'geocoder')) map.addControl(L.mapbox.geocoderControl(tilejson));
+        if (include('share')) map.addControl(L.mapbox.shareControl(tilejson));
+        if (include('attribution')) {
+            // Until we have smarter infoControl, this protects those with Base64-encoded img attributions
+            var pattern = new RegExp('<img'),
+                hasImage = pattern.test(tilejson.attribution);
+
+            if (hasImage) {
+                map.attributionControl.addAttribution(tilejson.attribution);
+            } else {
+                map.attributionControl.removeAttribution(tilejson.attribution);
+                map.addControl(L.mapbox.infoControl(tilejson.attribution));
+            }
+        } else {
+            map.attributionControl.removeAttribution(tilejson.attribution);
+        }
+    
+</script>
+</body>
+</html>

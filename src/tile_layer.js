@@ -1,13 +1,15 @@
 'use strict';
 
 var util = require('./util'),
-    url = require('./url');
+    url = require('./url'), 
+    instrumentile = require('./instrumentile');
 
 var TileLayer = L.TileLayer.extend({
     includes: [require('./load_tilejson')],
 
     options: {
-        format: 'png'
+        format: 'png',
+        instrument: false
     },
 
     // http://mapbox.com/developers/api/#image_quality
@@ -32,6 +34,10 @@ var TileLayer = L.TileLayer.extend({
 
         if (options && options.format) {
             util.strict_oneof(options.format, this.formats);
+        }
+
+        if (options && options.instrument){
+            this.instrumentile = instrumentile(this, options.instrument);
         }
 
         this._loadTileJSON(_);
