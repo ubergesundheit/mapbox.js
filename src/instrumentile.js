@@ -36,11 +36,9 @@ var Instrumentile = L.Class.extend({
                 tileLoadCount += 1;
             }
         }
-
         averageTileLoadTime = Math.round(averageTileLoadTime / tileLoadCount);
-        console.log(averageTileLoadTime)
         this._logToPong({tileloadtime: averageTileLoadTime, tileloadcount: tileLoadCount});
-
+        
         this.tileStats = {};
 	},
 

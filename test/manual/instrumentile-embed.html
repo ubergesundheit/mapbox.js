@@ -26,55 +26,14 @@ var tilejson = {
     "scheme": "xyz",
     "tilejson": "2.0.0",
     "tiles": ["http://a.tiles.mapbox.com/v3/examples.map-9ijuk24y/{z}/{x}/{y}.png"],
-    "webpage": "http://a.tiles.mapbox.com/v3/examples.map-9ijuk24y/page.html",
-    "options": ["share","zoompan","zoomwheel","legend","tooltips","zoombox","attribution","geocoder","watermark"] 
+    "webpage": "http://a.tiles.mapbox.com/v3/examples.map-9ijuk24y/page.html"
 
 };
-    
-    var tj = tilejson,
-        options = (tj.options||[]).join(' '),
-        include = function(option, attrib) {
-            return options.indexOf(option) >= 0 && (!attrib || tj[attrib]);
-        };
-
-    // var center = tilejson.center;
-    // tilejson.center = null;
 
     var map = L.mapbox.map('map', tilejson, {
         tileLayer: {instrument: true},
-        minZoom: tilejson.minzoom,
-        maxZoom: tilejson.maxzoom,
-        attributionControl: true,
-        infoControl: false,
-        gridLayer: !!tilejson.grids,
-        gridControl: !!tilejson.grids,
-        infoControl: false,
-        scrollWheelZoom: include('zoomwheel'),
-        legendControl: include('legend'),
-        zoomControl: include('zoompan')
+  
     });
-
-    // map.setView([tilejson.center[1], center[0]], center[2], {
-    //             animate: false
-    //     });
-    
-    if (tilejson.data) map.addLayer(L.mapbox.markerLayer(tilejson.data));
-        if (include('geocoder', 'geocoder')) map.addControl(L.mapbox.geocoderControl(tilejson));
-        if (include('share')) map.addControl(L.mapbox.shareControl(tilejson));
-        if (include('attribution')) {
-            // Until we have smarter infoControl, this protects those with Base64-encoded img attributions
-            var pattern = new RegExp('<img'),
-                hasImage = pattern.test(tilejson.attribution);
-
-            if (hasImage) {
-                map.attributionControl.addAttribution(tilejson.attribution);
-            } else {
-                map.attributionControl.removeAttribution(tilejson.attribution);
-                map.addControl(L.mapbox.infoControl(tilejson.attribution));
-            }
-        } else {
-            map.attributionControl.removeAttribution(tilejson.attribution);
-        }
     
 </script>
 </body>
