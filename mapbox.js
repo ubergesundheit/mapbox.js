@@ -1,6 +1,6 @@
 // Hardcode image path, because Leaflet's autodetection
 // fails, because mapbox.js is not named leaflet.js
-window.L.Icon.Default.imagePath = '//api.tiles.mapbox.com/mapbox.js/' + 'v' +
+window.L.Icon.Default.imagePath = 'https://api.tiles.mapbox.com/mapbox.js/' + 'v' +
     require('./package.json').version + '/images';
 
 L.mapbox = module.exports = {
@@ -18,6 +18,7 @@ L.mapbox = module.exports = {
     featureLayer: require('./src/feature_layer'),
     map: require('./src/map'),
     config: require('./src/config'),
+    instrumentile: require('./src/instrumentile'),
     sanitize: require('sanitize-caja'),
     template: require('mustache').to_html
 };
